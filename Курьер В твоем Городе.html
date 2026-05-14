@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Работа курьером рядом с домом | Регистрация</title>
+    <meta name="description" content="Работа курьером рядом с домом. Выбери свой город и зарегистрируйся — начни зарабатывать от 2 000 ₽ в день. 100+ городов.">
+    <style>
+        :root {
+            --bg: #f4f2ee;
+            --card-bg: #ffffff;
+            --text: #1a1a2e;
+            --accent: #f85c3c;
+            --accent-hover: #e04a2b;
+            --border: #e4e0d9;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            --radius: 18px;
+            --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            -webkit-tap-highlight-color: transparent;
+            background: var(--bg);
+            min-height: 100%;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            padding: 20px 12px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+            background-image: radial-gradient(circle at 50% 0%, rgba(248,92,60,0.03) 0%, transparent 60%);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(145deg, #11152b 0%, #1c2348 100%);
+            border-radius: 28px;
+            padding: 32px 18px 36px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(248,92,60,0.2) 0%, transparent 70%);
+            top: -40px;
+            right: -50px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(78,252,165,0.08) 0%, transparent 70%);
+            bottom: -30px;
+            left: -30px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .hero-illustration {
+            position: absolute;
+            right: 12px;
+            top: 14px;
+            font-size: 64px;
+            opacity: 0.15;
+            pointer-events: none;
+            transform: rotate(-10deg);
+            z-index: 0;
+        }
+        .hero * {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero-badge .dot {
+            width: 9px;
+            height: 9px;
+            background: #4efca5;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #4efca5;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,100%{box-shadow:0 0 8px #4efca5;}
+            50%{box-shadow:0 0 20px #4efca5,0 0 30px rgba(78,252,165,0.6);}
+        }
+        .hero h1 {
+            font-size: clamp(26px, 8vw, 38px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .hero h1 span {
+            color: #ffb84d;
+        }
+        .hero-sub {
+            font-size: 15px;
+            opacity: 0.85;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin-top: 8px;
+        }
+        .stat {
+            background: rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 14px 10px;
+            flex: 1 1 90px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-val {
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .stat-val.green {
+            color: #4efca5;
+        }
+        .stat-lbl {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 18px;
+        }
+
+        .search-label {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1e1e2e;
+        }
+        .search-box {
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 14px 42px 14px 16px;
+            font-size: 16px;
+            border: 1.5px solid #e0dcd5;
+            border-radius: 14px;
+            background: #f8f7f4;
+            outline: none;
+            font-family: var(--font);
+            transition: 0.2s;
+        }
+        .search-input:focus {
+            border-color: #bdb5a5;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(248,92,60,0.05);
+        }
+        .search-clear {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+            padding: 4px 8px;
+            display: none;
+            border-radius: 50%;
+            line-height: 1;
+            z-index: 2;
+        }
+        .search-clear.visible {
+            display: block;
+        }
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #aaa;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Cities grid */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        @media (min-width: 460px) {
+            .cities-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 600px) {
+            .cities-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .city-card {
+            background: #f9f8f5;
+            border: 1.5px solid #ece8e1;
+            border-radius: 14px;
+            padding: 14px 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+            color: #1a1a2e;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 50px;
+            word-break: break-word;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .city-card:active {
+            transform: scale(0.96);
+            background: #fffaf5;
+            border-color: #f85c3c;
+        }
+        .city-card.hidden {
+            display: none;
+        }
+
+        .top-badge {
+            background: linear-gradient(135deg, #ff7b4a, #f85c3c);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+            margin-left: 4px;
+            box-shadow: 0 2px 8px rgba(248,92,60,0.3);
+        }
+        .city-emoji {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* No results message */
+        .no-results-msg {
+            display: none;
+            text-align: center;
+            background: #fff7f5;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 8px;
+            font-size: 15px;
+            color: #b33a2c;
+            border: 1px dashed #f5a89a;
+        }
+        .no-results-msg.visible {
+            display: block;
+        }
+
+        /* Permanent "didn't find city" section */
+        .not-found-permanent {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px dashed #ddd8cf;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .not-found-permanent .icon-question {
+            font-size: 28px;
+            opacity: 0.8;
+        }
+        .not-found-permanent p {
+            font-size: 15px;
+            color: #4a4a5a;
+            margin: 0;
+            font-weight: 500;
+        }
+        .btn-accent {
+            display: inline-block;
+            background: #f85c3c;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 32px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 8px 20px rgba(248,92,60,0.3);
+            transition: all 0.2s;
+            border: none;
+            letter-spacing: 0.3px;
+        }
+        .btn-accent:active {
+            transform: scale(0.95);
+            background: #e04a2b;
+        }
+
+        footer {
+            font-size: 11px;
+            color: #9e9a92;
+            text-align: center;
+            margin-top: 20px;
+            max-width: 600px;
+            width: 100%;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HERO ═══ -->
+    <div class="hero">
+        <div class="hero-illustration">🛵💨</div>
+        <div class="hero-badge">
+            <span class="dot"></span> Набор открыт • 2025
+        </div>
+        <h1>Работа курьером<br><span>рядом с домом</span></h1>
+        <p class="hero-sub">Выбери свой город и зарегистрируйся — начни зарабатывать уже сегодня</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-val green">от 2&nbsp;000&nbsp;₽</div>
+                <div class="stat-lbl">в день</div>
+            </div>
+            <div class="stat">
+                <div class="stat-val">100+</div>
+                <div class="stat-lbl">городов</div>
+            </div>
+            <div class="stat">
+                <div class="stat-val">15 мин</div>
+                <div class="stat-lbl">регистрация</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SEARCH ═══ -->
+    <div class="card">
+        <div class="search-label">📍 Найди свой город</div>
+        <div class="search-box">
+            <input type="text" id="citySearch" class="search-input" placeholder="Введите название..." autocomplete="off">
+            <button class="search-clear" id="searchClear" aria-label="Очистить">✕</button>
+            <span class="search-icon">🔍</span>
+        </div>
+    </div>
+
+    <!-- ═══ CITIES GRID ═══ -->
+    <div class="card">
+        <div class="section-title">🏙️ Популярные города</div>
+        <div class="cities-grid" id="citiesGrid">
+            <!-- 40 городов, первые 8 с Топ бейджем, data-city для поиска -->
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Москва"><span class="city-emoji">🏛️</span>Москва<span class="top-badge">Топ</span></a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Санкт-Петербург"><span class="city-emoji">🌉</span>Санкт-Петербург<span class="top-badge">Топ</span></a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Новосибирск"><span class="city-emoji">🏙️</span>Новосибирск<span class="top-badge">Топ</span></a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Екатеринбург"><span class="city-emoji">🏭</span>Екатеринбург<span class="top-badge">Топ</span></a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Казань"><span class="city-emoji">🕌</span>Казань<span class="top-badge">Топ</span></a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Нижний Новгород"><span class="city-emoji">🏞️</span>Нижний Новгород<span class="top-badge">Топ</span></a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Челябинск"><span class="city-emoji">🏗️</span>Челябинск<span class="top-badge">Топ</span></a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Самара"><span class="city-emoji">🏙️</span>Самара<span class="top-badge">Топ</span></a>
+
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Омск"><span class="city-emoji">🌆</span>Омск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Ростов-на-Дону"><span class="city-emoji">🌇</span>Ростов-на-Дону</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Уфа"><span class="city-emoji">🏡</span>Уфа</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Красноярск"><span class="city-emoji">🏔️</span>Красноярск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Воронеж"><span class="city-emoji">🌳</span>Воронеж</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Пермь"><span class="city-emoji">🏭</span>Пермь</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Волгоград"><span class="city-emoji">🌊</span>Волгоград</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Краснодар"><span class="city-emoji">🌴</span>Краснодар</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Сочи"><span class="city-emoji">🏖️</span>Сочи</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Тюмень"><span class="city-emoji">🏞️</span>Тюмень</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Ижевск"><span class="city-emoji">🏘️</span>Ижевск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Барнаул"><span class="city-emoji">🌲</span>Барнаул</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Саратов"><span class="city-emoji">🌾</span>Саратов</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Тольятти"><span class="city-emoji">🚗</span>Тольятти</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Иркутск"><span class="city-emoji">🏞️</span>Иркутск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Ульяновск"><span class="city-emoji">🏛️</span>Ульяновск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Хабаровск"><span class="city-emoji">🌅</span>Хабаровск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Ярославль"><span class="city-emoji">🏰</span>Ярославль</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Владивосток"><span class="city-emoji">🌊</span>Владивосток</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Махачкала"><span class="city-emoji">🏔️</span>Махачкала</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Томск"><span class="city-emoji">🏞️</span>Томск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Оренбург"><span class="city-emoji">🏗️</span>Оренбург</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Кемерово"><span class="city-emoji">⛏️</span>Кемерово</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Рязань"><span class="city-emoji">🏡</span>Рязань</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Киров"><span class="city-emoji">🏘️</span>Киров</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Липецк"><span class="city-emoji">🏭</span>Липецк</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Чебоксары"><span class="city-emoji">🌳</span>Чебоксары</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Калининград"><span class="city-emoji">🌊</span>Калининград</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Тула"><span class="city-emoji">🏰</span>Тула</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Ставрополь"><span class="city-emoji">🏞️</span>Ставрополь</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Брянск"><span class="city-emoji">🌲</span>Брянск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Тверь"><span class="city-emoji">🏛️</span>Тверь</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Курск"><span class="city-emoji">🏡</span>Курск</a>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="city-card" target="_blank" rel="noopener" data-city="Иваново"><span class="city-emoji">🏘️</span>Иваново</a>
+        </div>
+
+        <!-- Сообщение, если ничего не найдено (появляется динамически) -->
+        <div class="no-results-msg" id="noResultsMsg">
+            😕 Такого города нет в списке, но вы можете зарегистрироваться прямо сейчас!
+        </div>
+
+        <!-- Постоянная кнопка "не нашли свой город" -->
+        <div class="not-found-permanent">
+            <span class="icon-question">🤔</span>
+            <p>Не нашли свой город?</p>
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=cea83faca777430584685adf0401a42e&utm_content=blank" class="btn-accent" target="_blank" rel="noopener">
+                Зарегистрироваться сейчас →
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        ⚡ Более 100 городов России · Регистрация занимает 15 минут<br>
+        Партнёрская страница — переход на официальный сайт Яндекса
+    </footer>
+
+    <script>
+        (function() {
+            const searchInput = document.getElementById('citySearch');
+            const searchClear = document.getElementById('searchClear');
+            const citiesGrid = document.getElementById('citiesGrid');
+            const noResultsMsg = document.getElementById('noResultsMsg');
+            
+            // Получаем все карточки городов
+            const cityCards = Array.from(citiesGrid.querySelectorAll('.city-card'));
+
+            function filterCities() {
+                const query = searchInput.value.trim().toLowerCase();
+                let visibleCount = 0;
+
+                cityCards.forEach(card => {
+                    // Используем атрибут data-city для точного поиска
+                    const cityName = (card.getAttribute('data-city') || '').toLowerCase();
+                    if (!query || cityName.includes(query)) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Показываем/скрываем сообщение "ничего не найдено"
+                if (visibleCount === 0 && query.length > 0) {
+                    noResultsMsg.classList.add('visible');
+                } else {
+                    noResultsMsg.classList.remove('visible');
+                }
+
+                // Кнопка очистки
+                if (query.length > 0) {
+                    searchClear.classList.add('visible');
+                } else {
+                    searchClear.classList.remove('visible');
+                }
+            }
+
+            // Обработчики
+            searchInput.addEventListener('input', filterCities);
+            searchClear.addEventListener('click', function() {
+                searchInput.value = '';
+                filterCities();
+                searchInput.focus();
+            });
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    searchInput.value = '';
+                    filterCities();
+                }
+            });
+
+            // Инициализация
+            filterCities();
+        })();
+    </script>
+</body>
+</html>
